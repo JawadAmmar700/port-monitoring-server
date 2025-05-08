@@ -83,7 +83,7 @@ initializeDatabase()
         } catch (error) {
           console.error("Error generating new vessel:", error);
         }
-      }, 20000); // Every 5 minutes
+      }, 300000); // Every 5 minutes
 
       // Set up interval to update existing vessels (every 1 minute)
       const updateVesselsInterval = setInterval(async () => {
@@ -112,7 +112,7 @@ initializeDatabase()
         } catch (error) {
           console.error("Error updating vessels:", error);
         }
-      }, 5000); // Every 1 minute
+      }, 60000); // Every 1 minute
 
       socket.on("disconnect", () => {
         console.log("Client disconnected");
