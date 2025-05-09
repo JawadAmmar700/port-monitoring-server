@@ -1,54 +1,158 @@
-# Environmental Monitoring Backend
+# Port Monitoring System - Backend Service
 
-A Node.js backend for environmental monitoring system using SQLite database.
+This is the backend service for the Port Monitoring System, providing real-time environmental monitoring and vessel tracking capabilities.
 
 ## Features
 
-- RESTful API for environmental data
-- SQLite database for data storage
-- TypeScript support
-- Express.js server
+- Real-time environmental data monitoring
+- Vessel tracking and management
+- WebSocket support for live updates
+- SQLite database for data persistence
+- Mock data generation for testing
+- RESTful API endpoints
+
+## Tech Stack
+
+- Node.js
+- TypeScript
+- Express.js
+- Socket.IO
+- SQLite3
+- dotenv for environment configuration
 
 ## Prerequisites
 
 - Node.js (v14 or higher)
-- npm or yarn
+- npm or yarn package manager
 
-## Installation
+## Setup
 
-1. Clone the repository
-2. Install dependencies:
+1. Install dependencies:
+
 ```bash
 npm install
 ```
 
-## Development
+2. Create a `.env` file in the root directory with the following variables:
 
-1. Start the development server:
-```bash
-npm run dev
+```env
+PORT=3001
+FRONTEND_URL="http://localhost:3000"
+NODE_ENV=development
 ```
 
-2. Build the project:
+3. Build the TypeScript code:
+
 ```bash
 npm run build
 ```
 
-3. Start the production server:
+4. Start the development server:
+
 ```bash
-npm start
+npm run dev
+```
+
+## Database Setup
+
+The application uses SQLite as its database. The database file is automatically created in the `data` directory when the application starts.
+
+To initialize the database with mock data:
+
+```bash
+npm run generate-mock-data
+```
+
+To clear environmental data from the database:
+
+```bash
+npm run clear-environmental
+```
+
+To clear vessel data specifically:
+
+```bash
+npm run clear-vessels
 ```
 
 ## API Endpoints
 
-- `POST /api/environmental/data` - Create new environmental data
-- `GET /api/environmental/data/latest` - Get latest environmental data
-- `GET /api/environmental/data/historical` - Get historical environmental data
+### Environmental Data
 
-## Database
+- `GET /api/environmental` - Get current environmental data
+- `GET /api/environmental/history` - Get historical environmental data
 
-The application uses SQLite for data storage. The database file is automatically created in the `data` directory when the server starts.
+### Vessel Management
 
-## License
+- `GET /api/vessels` - Get all vessels
+- `POST /api/vessels` - Add a new vessel
+- `GET /api/vessels/:id` - Get vessel by ID
+- `PUT /api/vessels/:id` - Update vessel
+- `DELETE /api/vessels/:id` - Delete vessel
 
-ISC 
+### Sensors
+
+- `GET /api/sensors` - Get all sensors
+- `GET /api/sensors/:id` - Get sensor by ID
+
+## WebSocket Events
+
+The backend provides real-time updates through WebSocket connections:
+
+- `environmental-update` - Emitted when environmental data changes
+- `vessel-update` - Emitted when vessel data changes
+- `sensor-update` - Emitted when sensor data changes
+
+## Development
+
+To start the development server with hot-reloading:
+
+```bash
+npm run dev
+```
+
+## Building for Production
+
+To build the application for production:
+
+```bash
+npm run build
+```
+
+To start the production server:
+
+```bash
+npm start
+```
+
+## Testing
+
+To run tests:
+
+```bash
+npm test
+```
+
+## Project Structure
+
+```
+backend/
+├── src/
+│   ├── config/         # Configuration files
+│   ├── models/         # Data models
+│   ├── routes/         # API routes
+│   ├── scripts/        # Utility scripts
+│   ├── mockData.ts     # Mock data generation
+│   └── server.ts       # Main server file
+├── data/              # SQLite database files
+├── dist/              # Compiled JavaScript files
+└── package.json
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a new Pull Request

@@ -8,7 +8,7 @@
     "dev": "ts-node-dev src/server.ts",
     "build": "tsc",
     "test": "jest",
-    "clear-db": "ts-node src/scripts/clear-db.ts",
+    "clear-environmental": "ts-node src/scripts/clear-db.ts",
     "generate-mock-data": "ts-node src/scripts/generate-mock-data.ts",
     "clear-vessels": "ts-node src/scripts/clearVessels.ts"
   },
